@@ -16,8 +16,14 @@ PITCH = (
 )
 
 
+MAX_CHARS = 200
+
+
 def main() -> None:
-    assert 1 <= len(PITCH) <= 200, f"pitch must be 1-200 chars, got {len(PITCH)}"
+    assert PITCH.strip(), "pitch must not be only whitespace"
+    assert 1 <= len(PITCH) <= MAX_CHARS, (
+        f"pitch must be 1-{MAX_CHARS} chars, got {len(PITCH)}"
+    )
     assert "\n" not in PITCH, "pitch must be exactly one line"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
